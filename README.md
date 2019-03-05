@@ -1,4 +1,4 @@
-# SensorManagementWeb
+# DebateHubWeb
 
 
-Web Client for our semester project
+Web Client for our team project

@@ -7,10 +7,20 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 
+import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { ItemsComponent } from './item-comp/items/items.component';
+import { ItemService } from './item-serv/item.service';
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    MainNavComponent
+    MainNavComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -21,9 +31,11 @@ import { AppRoutingModule } from './app-routing.module';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase, 'SensorManagementWeb'),
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [ItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,12 +15,12 @@ namespace SensorManagementWeb
         private string ConnectionString;
         public MySqlConnection DataBaseConnection;
 
-        public void Connect(string username, string password, string serverHost)
+        public void Connect(string username, string password, string serverHost, string dataBase)
         {
             ConnectionString =
                 "Server=" + serverHost + ";" +
                 "Port=3306;" +
-                "Database=Emulator;" +
+                "Database="+dataBase+";" +
                 "Uid=" + username + ";" +
                 "password=" + password + ";";
             DataBaseConnection = new MySqlConnection(ConnectionString);

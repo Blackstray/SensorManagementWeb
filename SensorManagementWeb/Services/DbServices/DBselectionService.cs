@@ -14,7 +14,7 @@ namespace SensorManagementWeb
             List<Sensor<double>> sensors = new List<Sensor<double>>();
 
             DBconnectionService dBconnection = new DBconnectionService();
-            dBconnection.Connect(DBconnection.Username, DBconnection.Password, DBconnection.HostName);
+            dBconnection.Connect(DBconnection.Username, DBconnection.Password, DBconnection.HostName,DBconnection.Database);
             dBconnection.DataBaseConnection.Open();
 
             using (dBconnection.DataBaseConnection)
@@ -48,7 +48,7 @@ namespace SensorManagementWeb
         {
 
             DBconnectionService dBconnection = new DBconnectionService();
-            dBconnection.Connect(DBconnection.Username, DBconnection.Password, DBconnection.HostName);
+            dBconnection.Connect(DBconnection.Username, DBconnection.Password, DBconnection.HostName,DBconnection.Database);
             dBconnection.DataBaseConnection.Open();
 
             Sensor<double> sensor = new Sensor<double>();

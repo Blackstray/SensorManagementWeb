@@ -11,6 +11,7 @@ namespace SensorManagementWeb
         public static string HostName;
         public static string Username;
         public static string Password;
+        public static string Database;
 
     }
 }

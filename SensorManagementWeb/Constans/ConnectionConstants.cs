@@ -8,10 +8,10 @@ namespace SensorManagementWeb
 {
     public class DBconnection
     {
-        public static string HostName;
-        public static string Username;
-        public static string Password;
-        public static string Database;
+        public static string HostName = "91.211.246.37";
+        public static string Username = "admin";
+        public static string Password = "admin159";
+        public static string Database = "Emulator";
 
     }
 }

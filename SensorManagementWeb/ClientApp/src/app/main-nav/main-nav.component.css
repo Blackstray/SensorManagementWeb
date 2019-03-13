@@ -19,3 +19,8 @@ ul {
   margin: 0px;
   padding: 0px;
 }
+.imgMap{
+  max-width: 100%;
+  height: auto;
+
+}

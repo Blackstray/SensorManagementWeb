@@ -4,11 +4,22 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Sensor Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Sensor a</a>
-      <a mat-list-item href="#">Sensor b</a>
-      <a mat-list-item href="#">Sensor c</a>
-    </mat-nav-list>
+    <mat-accordion>
+        <ul *ngFor="let item of items">
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{item.title}}
+            </mat-panel-title>
+            <mat-panel-description>
+              Status: {{item.description}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+           Power: {{item.power}} | Temperature: {{item.temperature}}
+        </mat-expansion-panel>
+      </ul>
+      </mat-accordion>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
@@ -20,8 +31,10 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+
       <span>Sensor Map</span>
     </mat-toolbar>
-    <!-- Add Content Here -->
+    <img  src="../../assets/img/map.png" height="600">
+
   </mat-sidenav-content>
 </mat-sidenav-container>

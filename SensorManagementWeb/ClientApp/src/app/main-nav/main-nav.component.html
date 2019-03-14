@@ -1,0 +1,72 @@
+<mat-sidenav-container *ngIf="user" class="sidenav-container">
+  <mat-sidenav
+      #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Sensor Menu
+      </mat-toolbar>
+
+      <mat-accordion>
+        <ul *ngFor="let item of items">
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{item.type}}
+            </mat-panel-title>
+            <mat-panel-description>
+              Status: <b>{{item.status}}</b>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+            <mat-action-row *ngIf="item.power">Power: {{item.power}}</mat-action-row>
+            <mat-action-row  *ngIf="item.temperature">Temperature: {{item.temperature}}</mat-action-row>
+          </mat-expansion-panel>
+        </ul>
+      </mat-accordion>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar
+      id="mainToolbar"
+      color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="toolbar-spacer"></span>
+      <span class="toolbar-spacer"></span>
+      <span>Sensor Map</span><span class="toolbar-spacer"></span>
+      <span class="toolbar-spacer"></span>
+      <button
+        mat-mini-fab
+        [matMenuTriggerFor]="avatarDropDown"
+        class="toolbar-avatar"
+        color="primary"
+        [ngStyle]="{ 'background-image': 'url('+ user?.photoURL + ')' }"
+      ></button>
+
+
+
+    </mat-toolbar>
+    <img *ngIf="user" class="imgMap"  src="../../assets/img/map.png" height="600">
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<mat-menu #avatarDropDown="matMenu">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ user?.displayName }}</mat-card-title>
+        <mat-card-subtitle>{{ user?.email }}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+    <button
+      mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Sign Out</span>
+    </button>
+  </mat-menu>

@@ -13,14 +13,16 @@
                              (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{item.type}}
+              {{item.name}}:{{item.type}}
             </mat-panel-title>
             <mat-panel-description>
-              Status: <b>{{item.status}}</b>
+              <b class="txtInfo">{{item.status}}</b>
             </mat-panel-description>
           </mat-expansion-panel-header>
-            <mat-action-row *ngIf="item.power">Power: {{item.power}}</mat-action-row>
-            <mat-action-row  *ngIf="item.temperature">Temperature: {{item.temperature}}</mat-action-row>
+            <p *ngIf="item.power">Power: {{item.power}} {{item.power_u}}</p>
+            <p *ngIf="item.temperature">Temperature: {{item.temperature}} {{item.temperature_u}}</p>
+            <p *ngIf="item.amperage">Amperage: {{item.amperage}} {{item.amperage_u}}</p>
+            <p *ngIf="item.voltage">Voltage: {{item.voltage}} {{item.voltage_u}}</p>
           </mat-expansion-panel>
         </ul>
       </mat-accordion>

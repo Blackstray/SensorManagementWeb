@@ -1,7 +1,7 @@
 export interface Item {
   id?: string;
-  title?: string;
-  description?: string;
+  type?: string;
+  status?: string;
   power?: string;
   temperature?: string;
 }

@@ -10,7 +10,7 @@ export class ItemService {
   items: Observable<Item[]>;
 
   constructor(public afs: AngularFirestore) {
-    this.items = this.afs.collection('items').valueChanges();
+    this.items = this.afs.collection('Sensors').valueChanges();
   }
 
   getItems() {

@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ItemService } from '../item-serv/item.service';
 import { Item } from '../models/Item';
+import { LoginService } from '../auth/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-nav',
@@ -11,6 +13,7 @@ import { Item } from '../models/Item';
   styleUrls: ['./main-nav.component.css']
 })
 export class MainNavComponent implements OnInit {
+  user: firebase.User;
   panelOpenState = false;
   items: Item[];
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -18,12 +21,28 @@ export class MainNavComponent implements OnInit {
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private itemService: ItemService) {}
+  constructor(private breakpointObserver: BreakpointObserver, private itemService: ItemService,
+              private service: LoginService, private router: Router) {}
   ngOnInit() {
     this.itemService.getItems().subscribe(items => {
       this.items = items;
-      // console.log(items);
-      // this.items.toString();
     });
+    this.service.getLoggedInUser()
+      .subscribe( user => {
+        console.log( user );
+        this.user = user;
+        if (this.items === null) {
+          this.router.navigate(['/']);
+        }
+    });
+  }
+
+  loginGoogle() {
+    this.service.login();
+  }
+
+  logout() {
+    this.service.logout();
+    this.router.navigate(['/']);
   }
 }

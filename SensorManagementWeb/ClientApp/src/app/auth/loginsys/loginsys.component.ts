@@ -29,11 +29,16 @@ export class LoginsysComponent implements OnInit {
   loginGoogle() {
     console.log('Login...');
     this.service.login();
-    this.router.navigate(['main-nav']);
+    this.router.navigate(['main']);
   }
 
   logout() {
     this.service.logout();
+  }
+  anonLogin() {
+    console.log('Login...');
+    this.service.loginAnon();
+    this.router.navigate(['main']);
   }
 
 }

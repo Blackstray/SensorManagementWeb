@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
+import { ItemService } from 'src/app/item-serv/item.service';
+import { Item } from '../../models/Item';
 
 
 
@@ -10,11 +12,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./loginsys.component.css']
 })
 export class LoginsysComponent implements OnInit {
-
+  items: Item[];
   user: firebase.User;
 
   constructor(
-    private service: LoginService, private router: Router
+    private service: LoginService, private router: Router, private itemService: ItemService
 
   ) { }
 
@@ -29,7 +31,6 @@ export class LoginsysComponent implements OnInit {
   loginGoogle() {
     console.log('Login...');
     this.service.login();
-    this.router.navigate(['main']);
   }
 
   logout() {
@@ -38,6 +39,8 @@ export class LoginsysComponent implements OnInit {
   anonLogin() {
     console.log('Login...');
     this.service.loginAnon();
+  }
+  redirectMain(){
     this.router.navigate(['main']);
   }
 

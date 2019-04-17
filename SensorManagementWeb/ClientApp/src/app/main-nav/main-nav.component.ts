@@ -6,6 +6,7 @@ import { ItemService } from '../item-serv/item.service';
 import { Item } from '../models/Item';
 import { LoginService } from '../auth/login.service';
 import { Router } from '@angular/router';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-main-nav',
@@ -25,15 +26,13 @@ export class MainNavComponent implements OnInit {
               private service: LoginService, private router: Router) {}
   ngOnInit() {
     this.itemService.getItems().subscribe(items => {
+      console.log(items);
       this.items = items;
     });
     this.service.getLoggedInUser()
       .subscribe( user => {
         console.log( user );
         this.user = user;
-        if (this.items === null) {
-          this.router.navigate(['/']);
-        }
     });
   }
 
@@ -43,6 +42,6 @@ export class MainNavComponent implements OnInit {
 
   logout() {
     this.service.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['login']);
   }
 }

@@ -16,7 +16,7 @@ export class LoginService {
   }
 
   loginAnon() {
-    console.log('Redirecting to Google login provider');
+    console.log('Logging in');
     this.afAuth.auth.signInAnonymouslyAndRetrieveData();
   }
 

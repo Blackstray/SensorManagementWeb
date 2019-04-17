@@ -29,26 +29,21 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.itemService.getItems().subscribe(items => {
-      this.items = items;
-    });
     this.service.getLoggedInUser()
       .subscribe( user => {
         console.log( user );
         this.user = user;
-        if ( user != null) {
-          this.router.navigate(['main']);
-        }
+        if (!user) {
+          this.router.navigate(['login']);
+        } else { this.router.navigate(['main']); }
       });
     }
 
     loginGoogle() {
       this.service.login();
-      this.router.navigate(['main']);
     }
 
     logout() {
       this.service.logout();
-      this.router.navigate(['/']);
     }
 }

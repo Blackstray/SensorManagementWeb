@@ -7,7 +7,7 @@ import { TeamComponent } from './team/team.component';
 
 const routes: Routes = [
   { path: 'main', component: MainNavComponent },
-  { path: 'app-loginsys', component: LoginsysComponent },
+  { path: 'login', component: LoginsysComponent },
   { path: 'team', component: TeamComponent }
 ];
 

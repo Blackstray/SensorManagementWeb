@@ -5,9 +5,17 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Sensor Menu
-      </mat-toolbar>
-
-      <mat-accordion>
+    </mat-toolbar>
+    <ul *ngFor="let item of items">
+       {{item.name}}:{{item.type}} | Status: {{item.status}}
+       <p *ngIf="item.power">Power: {{item.power}}</p>
+       <p *ngIf="item.temperature">Temperature: {{item.temperature}}</p>
+       <p *ngIf="item.amperage">Amperage: {{item.amperage}}</p>
+       <p *ngIf="item.voltage">Voltage: {{item.voltage}}</p>
+       <p>--</p>
+    </ul>
+    <ng-template matExpansionPanelContent>
+      <mat-accordion color="primary">
         <ul *ngFor="let item of items">
           <mat-expansion-panel (opened)="panelOpenState = true"
                              (closed)="panelOpenState = false">
@@ -19,13 +27,14 @@
               <b class="txtInfo">{{item.status}}</b>
             </mat-panel-description>
           </mat-expansion-panel-header>
-            <p *ngIf="item.power">Power: {{item.power}} {{item.power_u}}</p>
-            <p *ngIf="item.temperature">Temperature: {{item.temperature}} {{item.temperature_u}}</p>
-            <p *ngIf="item.amperage">Amperage: {{item.amperage}} {{item.amperage_u}}</p>
-            <p *ngIf="item.voltage">Voltage: {{item.voltage}} {{item.voltage_u}}</p>
+            <p *ngIf="item.power">Power: {{item.power}}</p>
+            <p *ngIf="item.temperature">Temperature: {{item.temperature}}</p>
+            <p *ngIf="item.amperage">Amperage: {{item.amperage}}</p>
+            <p *ngIf="item.voltage">Voltage: {{item.voltage}}</p>
           </mat-expansion-panel>
         </ul>
       </mat-accordion>
+    </ng-template>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar
@@ -50,9 +59,6 @@
         color="primary"
         [ngStyle]="{ 'background-image': 'url('+ user?.photoURL + ')' }"
       ></button>
-
-
-
     </mat-toolbar>
     <img *ngIf="user" class="imgMap"  src="../../assets/img/map.png" height="600">
   </mat-sidenav-content>

@@ -4,37 +4,23 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
-    <mat-toolbar>Sensor Menu
-    </mat-toolbar>
+    <mat-toolbar>Sensor Menu</mat-toolbar>
     <ul *ngFor="let item of items">
-       {{item.name}}:{{item.type}} | Status: {{item.status}}
-       <p *ngIf="item.power">Power: {{item.power}}</p>
-       <p *ngIf="item.temperature">Temperature: {{item.temperature}}</p>
-       <p *ngIf="item.amperage">Amperage: {{item.amperage}}</p>
-       <p *ngIf="item.voltage">Voltage: {{item.voltage}}</p>
-       <p>--</p>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{item.name}}:{{item.type}}
+        </mat-panel-title>
+        <mat-panel-description>
+          <b class="txtInfo">{{item.status}}</b>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p *ngIf="item.power">Power: {{item.power}}</p>
+      <p *ngIf="item.temperature">Temperature: {{item.temperature}}</p>
+      <p *ngIf="item.amperage">Amperage: {{item.amperage}}</p>
+      <p *ngIf="item.voltage">Voltage: {{item.voltage}}</p>
+    </mat-expansion-panel>
     </ul>
-    <ng-template matExpansionPanelContent>
-      <mat-accordion color="primary">
-        <ul *ngFor="let item of items">
-          <mat-expansion-panel (opened)="panelOpenState = true"
-                             (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              {{item.name}}:{{item.type}}
-            </mat-panel-title>
-            <mat-panel-description>
-              <b class="txtInfo">{{item.status}}</b>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-            <p *ngIf="item.power">Power: {{item.power}}</p>
-            <p *ngIf="item.temperature">Temperature: {{item.temperature}}</p>
-            <p *ngIf="item.amperage">Amperage: {{item.amperage}}</p>
-            <p *ngIf="item.voltage">Voltage: {{item.voltage}}</p>
-          </mat-expansion-panel>
-        </ul>
-      </mat-accordion>
-    </ng-template>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar
@@ -50,7 +36,8 @@
       </button>
       <span class="toolbar-spacer"></span>
       <span class="toolbar-spacer"></span>
-      <span>Sensor Map</span><span class="toolbar-spacer"></span>
+      <span>Sensor Map</span>
+      <span class="toolbar-spacer"></span>
       <span class="toolbar-spacer"></span>
       <button
         mat-mini-fab

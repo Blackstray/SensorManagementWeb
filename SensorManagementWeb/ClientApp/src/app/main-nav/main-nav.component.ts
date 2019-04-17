@@ -6,7 +6,7 @@ import { ItemService } from '../item-serv/item.service';
 import { Item } from '../models/Item';
 import { LoginService } from '../auth/login.service';
 import { Router } from '@angular/router';
-import { userInfo } from 'os';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-main-nav',
@@ -14,6 +14,7 @@ import { userInfo } from 'os';
   styleUrls: ['./main-nav.component.css']
 })
 export class MainNavComponent implements OnInit {
+  public isCollapsed = false;
   user: firebase.User;
   panelOpenState = false;
   items: Item[];

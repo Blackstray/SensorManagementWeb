@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
               private afAuth: AngularFireAuth, private router: Router, private itemService: ItemService) {
 
   }
-
   ngOnInit() {
     this.service.getLoggedInUser()
       .subscribe( user => {

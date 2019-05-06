@@ -35,6 +35,7 @@ export class MainNavComponent implements OnInit {
         console.log( user );
         this.user = user;
     });
+
   }
 
   loginGoogle() {

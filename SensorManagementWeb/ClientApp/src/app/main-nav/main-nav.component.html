@@ -6,20 +6,12 @@
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Sensor Menu</mat-toolbar>
     <ul *ngFor="let item of items">
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{item.name}}:{{item.type}}
-        </mat-panel-title>
-        <mat-panel-description>
-          <b class="txtInfo">{{item.status}}</b>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <p *ngIf="item.power">Power: {{item.power}}</p>
-      <p *ngIf="item.temperature">Temperature: {{item.temperature}}</p>
-      <p *ngIf="item.amperage">Amperage: {{item.amperage}}</p>
-      <p *ngIf="item.voltage">Voltage: {{item.voltage}}</p>
-    </mat-expansion-panel>
+      {{item.name}}:{{item.type}} || Status: {{item.status}}
+      <p *ngIf="item.power">Power: {{item.power}} {{item.power_u}}</p>
+      <p *ngIf="item.temperature">Temperature: {{item.temperature}} {{item.temperature_u}}</p>
+      <p *ngIf="item.amperage">Amperage: {{item.amperage}} {{item.amperage_u}}</p>
+      <p *ngIf="item.voltage">Voltage: {{item.voltage}} {{item.voltage_u}}</p>
+      <p>---</p>
     </ul>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -36,7 +28,7 @@
       </button>
       <span class="toolbar-spacer"></span>
       <span class="toolbar-spacer"></span>
-      <span>Sensor Map</span>
+      <span>Map</span>
       <span class="toolbar-spacer"></span>
       <span class="toolbar-spacer"></span>
       <button
@@ -47,7 +39,12 @@
         [ngStyle]="{ 'background-image': 'url('+ user?.photoURL + ')' }"
       ></button>
     </mat-toolbar>
-    <img *ngIf="user" class="imgMap"  src="../../assets/img/map.png" height="600">
+    <mat-tab-group
+    color="primary">
+      <mat-tab label="Floor 1"><img *ngIf="user" class="imgMap"  src="../../assets/img/map.png" height="600"></mat-tab>
+      <mat-tab label="Floor 2"> Content 2 </mat-tab>
+      <mat-tab label="Floor 3"> Content 3 </mat-tab></mat-tab-group>
+
   </mat-sidenav-content>
 </mat-sidenav-container>
 

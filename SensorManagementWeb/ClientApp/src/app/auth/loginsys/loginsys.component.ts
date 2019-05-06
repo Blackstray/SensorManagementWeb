@@ -40,8 +40,5 @@ export class LoginsysComponent implements OnInit {
     console.log('Login...');
     this.service.loginAnon();
   }
-  redirectMain(){
-    this.router.navigate(['main']);
-  }
 
 }

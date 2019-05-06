@@ -1,7 +1,7 @@
 <mat-card class="card">
     <mat-card-title margin-left=1%>Sensor Management</mat-card-title>
     <mat-card-subtitle>Welcome to <b>sensor management project</b></mat-card-subtitle>
-    
+
     <mat-card-actions>
         <button
         *ngIf="!user"
@@ -10,7 +10,7 @@
         color="primary"
         (click)="loginGoogle()">
           <img class="imgGoogle" src="../../assets/img/google-white.png" height="30">
-  
+
           <b>Sign in</b>
         </button>
         <button mat-raised-button
@@ -18,12 +18,6 @@
         class="buttonSignIn"
         (click)="anonLogin()">
         Anonymous Sign-In
-        </button>
-        <button mat-raised-button
-        *ngIf="user"
-        class="buttonSignIn"
-        (click)="redirectMain()">
-        Sensor Menu
         </button>
     </mat-card-actions>
 </mat-card>

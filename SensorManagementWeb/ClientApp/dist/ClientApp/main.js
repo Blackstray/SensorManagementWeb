@@ -193,6 +193,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth_loginsys_loginsys_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./auth/loginsys/loginsys.component */ "./src/app/auth/loginsys/loginsys.component.ts");
 /* harmony import */ var _auth_login_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./auth/login.service */ "./src/app/auth/login.service.ts");
 /* harmony import */ var _material_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./material-module */ "./src/app/material-module.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
 
 
 
@@ -214,6 +215,8 @@ __webpack_require__.r(__webpack_exports__);
 
 // Login System
 
+
+//Bootstrap
 
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -237,6 +240,7 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"],
                 _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_7__["LayoutModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_17__["NgbModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"]
             ],
             providers: [
@@ -322,7 +326,7 @@ module.exports = ".sidenav-container {\r\n  height: 100%;\r\n}\r\n\r\n.sidenav {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card class=\"card\">\r\n    <mat-card-title margin-left=1%>Sensor Management</mat-card-title>\r\n    <mat-card-subtitle>Welcome to <b>sensor management project</b></mat-card-subtitle>\r\n    \r\n    <mat-card-actions>\r\n        <button\r\n        *ngIf=\"!user\"\r\n        class=\"buttonSignIn\"\r\n        mat-raised-button\r\n        color=\"primary\"\r\n        (click)=\"loginGoogle()\">\r\n          <img class=\"imgGoogle\" src=\"../../assets/img/google-white.png\" height=\"30\">\r\n  \r\n          <b>Sign in</b>\r\n        </button>\r\n        <button mat-raised-button\r\n        *ngIf=\"!user\"\r\n        class=\"buttonSignIn\"\r\n        (click)=\"anonLogin()\">\r\n        Anonymous Sign-In\r\n        </button>\r\n        <button mat-raised-button\r\n        *ngIf=\"user\"\r\n        class=\"buttonSignIn\"\r\n        (click)=\"redirectMain()\">\r\n        Sensor Menu\r\n        </button>\r\n    </mat-card-actions>\r\n</mat-card>\r\n"
+module.exports = "<mat-card class=\"card\">\r\n    <mat-card-title margin-left=1%>Sensor Management</mat-card-title>\r\n    <mat-card-subtitle>Welcome to <b>sensor management project</b></mat-card-subtitle>\r\n\r\n    <mat-card-actions>\r\n        <button\r\n        *ngIf=\"!user\"\r\n        class=\"buttonSignIn\"\r\n        mat-raised-button\r\n        color=\"primary\"\r\n        (click)=\"loginGoogle()\">\r\n          <img class=\"imgGoogle\" src=\"../../assets/img/google-white.png\" height=\"30\">\r\n\r\n          <b>Sign in</b>\r\n        </button>\r\n        <button mat-raised-button\r\n        *ngIf=\"!user\"\r\n        class=\"buttonSignIn\"\r\n        (click)=\"anonLogin()\">\r\n        Anonymous Sign-In\r\n        </button>\r\n    </mat-card-actions>\r\n</mat-card>\r\n"
 
 /***/ }),
 
@@ -370,9 +374,6 @@ var LoginsysComponent = /** @class */ (function () {
     LoginsysComponent.prototype.anonLogin = function () {
         console.log('Login...');
         this.service.loginAnon();
-    };
-    LoginsysComponent.prototype.redirectMain = function () {
-        this.router.navigate(['main']);
     };
     LoginsysComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -443,7 +444,7 @@ module.exports = ".sidenav-container {\r\n  height: 100%;\r\n}\r\n\r\n.sidenav {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container *ngIf=\"user\" class=\"sidenav-container\">\r\n  <mat-sidenav\r\n      #drawer class=\"sidenav\" fixedInViewport=\"true\"\r\n      [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\"\r\n      [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\r\n      [opened]=\"!(isHandset$ | async)\">\r\n    <mat-toolbar>Sensor Menu\r\n    </mat-toolbar>\r\n    <ul *ngFor=\"let item of items\">\r\n       {{item.name}}:{{item.type}} | Status: {{item.status}}\r\n       <p *ngIf=\"item.power\">Power: {{item.power}}</p>\r\n       <p *ngIf=\"item.temperature\">Temperature: {{item.temperature}}</p>\r\n       <p *ngIf=\"item.amperage\">Amperage: {{item.amperage}}</p>\r\n       <p *ngIf=\"item.voltage\">Voltage: {{item.voltage}}</p>\r\n       <p>--</p>\r\n    </ul>\r\n    <ng-template matExpansionPanelContent>\r\n      <mat-accordion color=\"primary\">\r\n        <ul *ngFor=\"let item of items\">\r\n          <mat-expansion-panel (opened)=\"panelOpenState = true\"\r\n                             (closed)=\"panelOpenState = false\">\r\n          <mat-expansion-panel-header>\r\n            <mat-panel-title>\r\n              {{item.name}}:{{item.type}}\r\n            </mat-panel-title>\r\n            <mat-panel-description>\r\n              <b class=\"txtInfo\">{{item.status}}</b>\r\n            </mat-panel-description>\r\n          </mat-expansion-panel-header>\r\n            <p *ngIf=\"item.power\">Power: {{item.power}}</p>\r\n            <p *ngIf=\"item.temperature\">Temperature: {{item.temperature}}</p>\r\n            <p *ngIf=\"item.amperage\">Amperage: {{item.amperage}}</p>\r\n            <p *ngIf=\"item.voltage\">Voltage: {{item.voltage}}</p>\r\n          </mat-expansion-panel>\r\n        </ul>\r\n      </mat-accordion>\r\n    </ng-template>\r\n  </mat-sidenav>\r\n  <mat-sidenav-content>\r\n    <mat-toolbar\r\n      id=\"mainToolbar\"\r\n      color=\"primary\">\r\n      <button\r\n        type=\"button\"\r\n        aria-label=\"Toggle sidenav\"\r\n        mat-icon-button\r\n        (click)=\"drawer.toggle()\"\r\n        *ngIf=\"isHandset$ | async\">\r\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\r\n      </button>\r\n      <span class=\"toolbar-spacer\"></span>\r\n      <span class=\"toolbar-spacer\"></span>\r\n      <span>Sensor Map</span><span class=\"toolbar-spacer\"></span>\r\n      <span class=\"toolbar-spacer\"></span>\r\n      <button\r\n        mat-mini-fab\r\n        [matMenuTriggerFor]=\"avatarDropDown\"\r\n        class=\"toolbar-avatar\"\r\n        color=\"primary\"\r\n        [ngStyle]=\"{ 'background-image': 'url('+ user?.photoURL + ')' }\"\r\n      ></button>\r\n\r\n\r\n\r\n    </mat-toolbar>\r\n    <img *ngIf=\"user\" class=\"imgMap\"  src=\"../../assets/img/map.png\" height=\"600\">\r\n  </mat-sidenav-content>\r\n</mat-sidenav-container>\r\n\r\n\r\n<mat-menu #avatarDropDown=\"matMenu\">\r\n    <mat-card>\r\n      <mat-card-header>\r\n        <mat-card-title>{{ user?.displayName }}</mat-card-title>\r\n        <mat-card-subtitle>{{ user?.email }}</mat-card-subtitle>\r\n      </mat-card-header>\r\n    </mat-card>\r\n    <button\r\n      mat-menu-item (click)=\"logout()\">\r\n      <mat-icon>exit_to_app</mat-icon>\r\n      <span>Sign Out</span>\r\n    </button>\r\n  </mat-menu>\r\n"
+module.exports = "<mat-sidenav-container *ngIf=\"user\" class=\"sidenav-container\">\r\n  <mat-sidenav\r\n      #drawer class=\"sidenav\" fixedInViewport=\"true\"\r\n      [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\"\r\n      [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\r\n      [opened]=\"!(isHandset$ | async)\">\r\n    <mat-toolbar>Sensor Menu</mat-toolbar>\r\n    <ul *ngFor=\"let item of items\">\r\n      {{item.name}}:{{item.type}} || Status: {{item.status}}\r\n      <p *ngIf=\"item.power\">Power: {{item.power}} {{item.power_u}}</p>\r\n      <p *ngIf=\"item.temperature\">Temperature: {{item.temperature}} {{item.temperature_u}}</p>\r\n      <p *ngIf=\"item.amperage\">Amperage: {{item.amperage}} {{item.amperage_u}}</p>\r\n      <p *ngIf=\"item.voltage\">Voltage: {{item.voltage}} {{item.voltage_u}}</p>\r\n      <p>---</p>\r\n    </ul>\r\n  </mat-sidenav>\r\n  <mat-sidenav-content>\r\n    <mat-toolbar\r\n      id=\"mainToolbar\"\r\n      color=\"primary\">\r\n      <button\r\n        type=\"button\"\r\n        aria-label=\"Toggle sidenav\"\r\n        mat-icon-button\r\n        (click)=\"drawer.toggle()\"\r\n        *ngIf=\"isHandset$ | async\">\r\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\r\n      </button>\r\n      <span class=\"toolbar-spacer\"></span>\r\n      <span class=\"toolbar-spacer\"></span>\r\n      <span>Sensor Map</span>\r\n      <span class=\"toolbar-spacer\"></span>\r\n      <span class=\"toolbar-spacer\"></span>\r\n      <button\r\n        mat-mini-fab\r\n        [matMenuTriggerFor]=\"avatarDropDown\"\r\n        class=\"toolbar-avatar\"\r\n        color=\"primary\"\r\n        [ngStyle]=\"{ 'background-image': 'url('+ user?.photoURL + ')' }\"\r\n      ></button>\r\n    </mat-toolbar>\r\n    <img *ngIf=\"user\" class=\"imgMap\"  src=\"../../assets/img/map.png\" height=\"600\">\r\n  </mat-sidenav-content>\r\n</mat-sidenav-container>\r\n\r\n\r\n<mat-menu #avatarDropDown=\"matMenu\">\r\n    <mat-card>\r\n      <mat-card-header>\r\n        <mat-card-title>{{ user?.displayName }}</mat-card-title>\r\n        <mat-card-subtitle>{{ user?.email }}</mat-card-subtitle>\r\n      </mat-card-header>\r\n    </mat-card>\r\n    <button\r\n      mat-menu-item (click)=\"logout()\">\r\n      <mat-icon>exit_to_app</mat-icon>\r\n      <span>Sign Out</span>\r\n    </button>\r\n  </mat-menu>\r\n"
 
 /***/ }),
 
@@ -477,6 +478,7 @@ var MainNavComponent = /** @class */ (function () {
         this.itemService = itemService;
         this.service = service;
         this.router = router;
+        this.isCollapsed = false;
         this.panelOpenState = false;
         this.isHandset$ = this.breakpointObserver.observe(_angular_cdk_layout__WEBPACK_IMPORTED_MODULE_2__["Breakpoints"].Handset)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (result) { return result.matches; }));

@@ -17,6 +17,7 @@ export class MainNavComponent implements OnInit {
   public isCollapsed = false;
   user: firebase.User;
   panelOpenState = false;
+  floors: number[];
   items: Item[];
   currentFloor: number;
   sensorName: string;
@@ -38,7 +39,8 @@ export class MainNavComponent implements OnInit {
         console.log( user );
         this.user = user;
     });
-
+    this.floors = this.itemService.getAllFloors();
+    console.log(this.floors);
   }
 
   loginGoogle() {
@@ -50,15 +52,9 @@ export class MainNavComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  next() {
-
-    this.itemService.nextFloor();
-    this.currentFloor = this.itemService.getFloor();
-  }
-
-  previous() {
-
-    this.itemService.previousFloor();
-    this.currentFloor = this.itemService.getFloor();
+  update(x: number) {
+    this.currentFloor = x;
+    this.itemService.changeFloor(x);
+    console.log(x);
   }
 }

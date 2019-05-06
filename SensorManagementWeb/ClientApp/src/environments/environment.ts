@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyBfHRnY8HiCNd5JLxz0FOochXCRPx6WDYg',
-    authDomain: 'sensormanagementproject.firebaseapp.com',
-    databaseURL: 'https://sensormanagementproject.firebaseio.com',
-    projectId: 'sensormanagementproject',
-    storageBucket: 'sensormanagementproject.appspot.com',
-    messagingSenderId: '328272116624'
+    apiKey: '',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: ''
   }
 };
 

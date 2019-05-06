@@ -4,13 +4,15 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
-    <mat-toolbar>Sensor Menu</mat-toolbar>
+    <mat-toolbar>Sensors</mat-toolbar>
     <p>Current floor: <b>{{currentFloor}}</b></p>
     <button mat-button (click)="previous()">Previous floor</button>
     <span class="toolbar-spacer"></span>
     <button mat-button (click)="next()">Next floor</button>
     <ul *ngFor="let item of items">
-      {{item.name}}:{{item.type}} || Status: {{item.status}}
+      {{item.name}}({{item.type}})
+      <br>
+      <p>Status: <b>{{item.status}}</b></p>
       <p *ngIf="item.power">Power: {{item.power}} {{item.power_u}}</p>
       <p *ngIf="item.temperature">Temperature: {{item.temperature}} {{item.temperature_u}}</p>
       <p *ngIf="item.amperage">Amperage: {{item.amperage}} {{item.amperage_u}}</p>

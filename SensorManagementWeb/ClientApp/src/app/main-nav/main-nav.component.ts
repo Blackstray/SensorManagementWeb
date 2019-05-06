@@ -19,6 +19,7 @@ export class MainNavComponent implements OnInit {
   panelOpenState = false;
   items: Item[];
   currentFloor: number;
+  sensorName: string;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)

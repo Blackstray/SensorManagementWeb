@@ -50,6 +50,11 @@ ul {
   position: relative;
 }
 
+.floorText{
+  text-align: center;
+  font-size: 200%;
+}
+
 
 .textSideNavAlign{
   text-align: left;

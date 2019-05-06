@@ -10,18 +10,20 @@ export class ItemService {
   itemsCollection: AngularFirestoreCollection<Item>;
   items: Observable<Item[]>;
   floor$: BehaviorSubject<number>;
+  sensor$: BehaviorSubject<string>;
   floorMax$: number;
   floorMin$: number;
 
   constructor(public afs: AngularFirestore) {
     // Initial floor set
+    this.sensor$ = new BehaviorSubject('');
     this.floor$ = new BehaviorSubject(1);
     this.floorMax$ = 3;
     this.floorMin$ = 1;
     this.items = this.floor$.pipe(
         switchMap(flr => this.afs
           .collection('Sensors', ref => ref
-          .where('floor', '==', flr))
+          .where('floor', '==', flr ))
           .valueChanges())
     );
   }

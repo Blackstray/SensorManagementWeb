@@ -14,7 +14,7 @@ export class ItemService {
   floorMin$: number;
 
   constructor(public afs: AngularFirestore) {
-    //Initial floor set
+    // Initial floor set
     this.floor$ = new BehaviorSubject(1);
     this.floorMax$ = 3;
     this.floorMin$ = 1;
@@ -30,18 +30,18 @@ export class ItemService {
     return this.items;
   }
 
-  nextFloor(){
-    if(this.floor$.getValue() + 1 <= this.floorMax$){
+  nextFloor() {
+    if (this.floor$.getValue() + 1 <= this.floorMax$) {
     this.floor$.next(this.floor$.getValue() + 1);
     }
   }
-  previousFloor(){
-    if(this.floor$.getValue() - 1 >= this.floorMin$){
+  previousFloor() {
+    if (this.floor$.getValue() - 1 >= this.floorMin$) {
     this.floor$.next(this.floor$.getValue() - 1);
     }
   }
 
-  getFloor(){
+  getFloor() {
     return this.floor$.getValue();
   }
 }

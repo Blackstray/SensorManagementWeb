@@ -1,5 +1,5 @@
 export interface Item {
-  set?: string;
+  floor?: number;
   id?: string;
   name?: string;
   type?: string;

@@ -4,26 +4,19 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
-    <mat-toolbar>Sensor Menu
-      </mat-toolbar>
-
-      <mat-accordion>
-        <ul *ngFor="let item of items">
-          <mat-expansion-panel (opened)="panelOpenState = true"
-                             (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              {{item.type}}
-            </mat-panel-title>
-            <mat-panel-description>
-              Status: <b>{{item.status}}</b>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-            <mat-action-row *ngIf="item.power">Power: {{item.power}}</mat-action-row>
-            <mat-action-row  *ngIf="item.temperature">Temperature: {{item.temperature}}</mat-action-row>
-          </mat-expansion-panel>
-        </ul>
-      </mat-accordion>
+    <mat-toolbar>Sensors</mat-toolbar>
+    <span class="toolbar-spacer"></span>
+    <ul *ngFor="let item of items">
+      {{item.name}}({{item.type}})
+      <br>
+      <p>Status: <b>{{item.status}}</b></p>
+      <p *ngIf="item.power">Power: {{item.power}} {{item.power_u}}</p>
+      <p *ngIf="item.temperature">Temperature: {{item.temperature}} {{item.temperature_u}}</p>
+      <p *ngIf="item.amperage">Amperage: {{item.amperage}} {{item.amperage_u}}</p>
+      <p *ngIf="item.voltage">Voltage: {{item.voltage}} {{item.voltage_u}}</p>
+      <mat-divider></mat-divider>
+      <br>
+    </ul>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar
@@ -39,7 +32,15 @@
       </button>
       <span class="toolbar-spacer"></span>
       <span class="toolbar-spacer"></span>
-      <span>Sensor Map</span><span class="toolbar-spacer"></span>
+      <span>
+        <button matTooltip="Change the floor" style="font-size: 150%" mat-button [matMenuTriggerFor]="menu">Floor {{currentFloor}}</button>
+        <mat-menu #menu="matMenu">
+          <ul *ngFor="let flr of floors">
+            <button (click)="update(flr)" mat-menu-item>Floor {{flr}}</button>
+          </ul>
+        </mat-menu>
+      </span>
+      <span class="toolbar-spacer"></span>
       <span class="toolbar-spacer"></span>
       <button
         mat-mini-fab
@@ -48,11 +49,8 @@
         color="primary"
         [ngStyle]="{ 'background-image': 'url('+ user?.photoURL + ')' }"
       ></button>
-
-
-
     </mat-toolbar>
-    <img *ngIf="user" class="imgMap"  src="../../assets/img/map.png" height="600">
+    <img *ngIf="user" class="imgMap"  src="../../assets/img/{{currentFloor}}floor.png" height="600">
   </mat-sidenav-content>
 </mat-sidenav-container>
 

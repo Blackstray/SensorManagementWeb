@@ -16,4 +16,33 @@ import { map } from 'rxjs/operators';
 
 export class AppComponent implements OnInit {
 
+  user: firebase.User;
+  panelOpenState = false;
+  items: Item[];
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
+  constructor(private breakpointObserver: BreakpointObserver, private service: LoginService,
+              private afAuth: AngularFireAuth, private router: Router, private itemService: ItemService) {
+
+  }
+  ngOnInit() {
+    this.service.getLoggedInUser()
+      .subscribe( user => {
+        console.log( user );
+        this.user = user;
+        if (!user) {
+          this.router.navigate(['login']);
+        } else { this.router.navigate(['main']); }
+      });
+    }
+
+    loginGoogle() {
+      this.service.login();
+    }
+
+    logout() {
+      this.service.logout();
+    }
 }

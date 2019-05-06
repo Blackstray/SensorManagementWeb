@@ -12,7 +12,12 @@ export class LoginService {
 
   login() {
     console.log('Redirecting to Google login provider');
-    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  }
+
+  loginAnon() {
+    console.log('Logging in');
+    this.afAuth.auth.signInAnonymouslyAndRetrieveData();
   }
 
   logout() {

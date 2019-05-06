@@ -20,11 +20,17 @@ ul {
   padding: 0px;
 }
 .imgMap{
+  scale: 150%;
   max-width: 90%;
-  max-height: 90%;
+  max-height: 75%;
   height: auto;
   left: 50%;
   top: 10%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  margin-bottom: auto;
 }
 
 .rowAlign{
@@ -45,6 +51,11 @@ ul {
   position: relative;
 }
 
+.floorText{
+  text-align: center;
+  font-size: 200%;
+}
+
 
 .textSideNavAlign{
   text-align: left;
@@ -55,6 +66,16 @@ ul {
   left: 20px;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.txtInfo {
+  margin-right: 5px;
+  right: 5px;
+  margin-left: 10%;
+}
+
+.txtDetails {
+  text-align: left;
 }
 
 

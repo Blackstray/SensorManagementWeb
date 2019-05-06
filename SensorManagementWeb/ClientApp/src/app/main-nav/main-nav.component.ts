@@ -6,6 +6,7 @@ import { ItemService } from '../item-serv/item.service';
 import { Item } from '../models/Item';
 import { LoginService } from '../auth/login.service';
 import { Router } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-main-nav',
@@ -13,9 +14,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-nav.component.css']
 })
 export class MainNavComponent implements OnInit {
+  public isCollapsed = false;
   user: firebase.User;
   panelOpenState = false;
+  floors: number[];
   items: Item[];
+  currentFloor: number;
+  sensorName: string;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -24,17 +29,18 @@ export class MainNavComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, private itemService: ItemService,
               private service: LoginService, private router: Router) {}
   ngOnInit() {
+    this.currentFloor = this.itemService.getFloor();
     this.itemService.getItems().subscribe(items => {
+      console.log(items);
       this.items = items;
     });
     this.service.getLoggedInUser()
       .subscribe( user => {
         console.log( user );
         this.user = user;
-        if (this.items === null) {
-          this.router.navigate(['/']);
-        }
     });
+    this.floors = this.itemService.getAllFloors();
+    console.log(this.floors);
   }
 
   loginGoogle() {
@@ -43,6 +49,12 @@ export class MainNavComponent implements OnInit {
 
   logout() {
     this.service.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['login']);
+  }
+
+  update(x: number) {
+    this.currentFloor = x;
+    this.itemService.changeFloor(x);
+    console.log(x);
   }
 }

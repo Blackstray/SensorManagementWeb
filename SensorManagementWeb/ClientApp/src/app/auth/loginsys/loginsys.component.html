@@ -1,14 +1,23 @@
-<div>
-  <h1 *ngIf="!user" class=textToSide>
-    <button
-    *ngIf="!user"
-    class="buttonSignIn"
-    mat-raised-button
-    color="primary"
-    (click)="loginGoogle()">
-      <img class="imgGoogle" src="../../assets/img/google-white.png" height="30">
+<mat-card class="card">
+    <mat-card-title margin-left=1%>Sensor Management</mat-card-title>
+    <mat-card-subtitle>Welcome to <b>sensor management project</b></mat-card-subtitle>
 
-      <b>Sign in</b>
-    </button>
-  </h1>
-</div>
+    <mat-card-actions>
+        <button
+        *ngIf="!user"
+        class="buttonSignIn"
+        mat-raised-button
+        color="primary"
+        (click)="loginGoogle()">
+          <img class="imgGoogle" src="../../assets/img/google-white.png" height="30">
+
+          <b>Sign in</b>
+        </button>
+        <button mat-raised-button
+        *ngIf="!user"
+        class="buttonSignIn"
+        (click)="anonLogin()">
+        Anonymous Sign-In
+        </button>
+    </mat-card-actions>
+</mat-card>

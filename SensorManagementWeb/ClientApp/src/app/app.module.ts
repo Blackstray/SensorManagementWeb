@@ -22,11 +22,8 @@ import { LoginsysComponent } from './auth/loginsys/loginsys.component';
 // Login System
 import { LoginService } from './auth/login.service';
 import { MaterialModule } from './material-module';
-
-
-
-
-
+//Bootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -47,6 +44,7 @@ import { MaterialModule } from './material-module';
     BrowserAnimationsModule,
     LayoutModule,
     FormsModule,
+    NgbModule,
     AppRoutingModule
   ],
   providers: [

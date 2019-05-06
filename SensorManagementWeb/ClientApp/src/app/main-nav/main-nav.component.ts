@@ -18,6 +18,7 @@ export class MainNavComponent implements OnInit {
   user: firebase.User;
   panelOpenState = false;
   items: Item[];
+  currentFloor: number;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -26,6 +27,7 @@ export class MainNavComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, private itemService: ItemService,
               private service: LoginService, private router: Router) {}
   ngOnInit() {
+    this.currentFloor = this.itemService.getFloor();
     this.itemService.getItems().subscribe(items => {
       console.log(items);
       this.items = items;
@@ -45,5 +47,17 @@ export class MainNavComponent implements OnInit {
   logout() {
     this.service.logout();
     this.router.navigate(['login']);
+  }
+
+  next() {
+
+    this.itemService.nextFloor();
+    this.currentFloor = this.itemService.getFloor();
+  }
+
+  previous() {
+
+    this.itemService.previousFloor();
+    this.currentFloor = this.itemService.getFloor();
   }
 }

@@ -5,10 +5,7 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Sensors</mat-toolbar>
-    <p>Current floor: <b>{{currentFloor}}</b></p>
-    <button mat-button (click)="previous()">Previous floor</button>
     <span class="toolbar-spacer"></span>
-    <button mat-button (click)="next()">Next floor</button>
     <ul *ngFor="let item of items">
       {{item.name}}({{item.type}})
       <br>
@@ -17,6 +14,7 @@
       <p *ngIf="item.temperature">Temperature: {{item.temperature}} {{item.temperature_u}}</p>
       <p *ngIf="item.amperage">Amperage: {{item.amperage}} {{item.amperage_u}}</p>
       <p *ngIf="item.voltage">Voltage: {{item.voltage}} {{item.voltage_u}}</p>
+      <mat-divider></mat-divider>
       <br>
     </ul>
   </mat-sidenav>
@@ -34,7 +32,14 @@
       </button>
       <span class="toolbar-spacer"></span>
       <span class="toolbar-spacer"></span>
-      <span>Map</span>
+      <span>
+        <button style="font-size: 150%" mat-button [matMenuTriggerFor]="menu">Floor {{currentFloor}}</button>
+        <mat-menu #menu="matMenu">
+          <ul *ngFor="let flr of floors">
+            <button (click)="update(flr)" mat-menu-item>Floor {{flr}}</button>
+          </ul>
+        </mat-menu>
+      </span>
       <span class="toolbar-spacer"></span>
       <span class="toolbar-spacer"></span>
       <button
@@ -45,6 +50,7 @@
         [ngStyle]="{ 'background-image': 'url('+ user?.photoURL + ')' }"
       ></button>
     </mat-toolbar>
+
     <img *ngIf="user" class="imgMap"  src="../../assets/img/{{currentFloor}}floor.png" height="600">
   </mat-sidenav-content>
 </mat-sidenav-container>

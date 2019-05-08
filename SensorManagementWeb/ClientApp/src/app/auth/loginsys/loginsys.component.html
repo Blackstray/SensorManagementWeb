@@ -20,4 +20,11 @@
         Anonymous Sign-In
         </button>
     </mat-card-actions>
+    <button mat-button [matMenuTriggerFor]="menu">Links</button>
+    <mat-menu #menu="matMenu">
+      <a href="https://trello.com/b/UhXDwLc9/semester-project" target="_blank" mat-menu-item>Trello</a>
+      <a href="https://github.com/Blackstray/SensorManagementWeb" target="_blank" mat-menu-item>Web Github</a>
+      <a href="https://github.com/Blackstray/SensorManagementApp" target="_blank" mat-menu-item>Android Github</a>
+      <a href="https://github.com/Blackstray/SensorManagementEmulator" target="_blank" mat-menu-item>Emulator Github</a>
+    </mat-menu>
 </mat-card>

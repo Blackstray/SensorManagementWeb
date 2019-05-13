@@ -1,0 +1,26 @@
+<mat-card class="card">
+    <mat-card-title margin-left=1%>Sensor Management</mat-card-title>
+    <mat-card-subtitle>
+      <p>Project for 4th semester module <b>PR00B121</b>/<b>P175B015</b></p>
+      <p>Kaunas University of Technology</p>
+    </mat-card-subtitle>
+
+    <mat-card-actions>
+        <button
+        *ngIf="!user"
+        class="buttonSignIn"
+        mat-raised-button
+        color="primary"
+        (click)="loginGoogle()">
+          <img class="imgGoogle" src="../../assets/img/google-white.png" height="30">
+
+          <b>Sign in</b>
+        </button>
+        <button mat-raised-button
+        *ngIf="!user"
+        class="buttonSignIn"
+        (click)="anonLogin()">
+        Anonymous Sign-In
+        </button>
+    </mat-card-actions>
+</mat-card>

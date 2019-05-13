@@ -1,0 +1,70 @@
+<mat-sidenav-container *ngIf="user" class="sidenav-container">
+  <mat-sidenav
+      #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Sensors</mat-toolbar>
+    <span class="toolbar-spacer"></span>
+    <ul *ngFor="let item of items">
+      {{item.name}}({{item.type}})
+      <br>
+      <p>Status: <b>{{item.status}}</b></p>
+      <p *ngIf="item.power">Power: {{item.power}} {{item.power_u}}</p>
+      <p *ngIf="item.temperature">Temperature: {{item.temperature}} {{item.temperature_u}}</p>
+      <p *ngIf="item.amperage">Amperage: {{item.amperage}} {{item.amperage_u}}</p>
+      <p *ngIf="item.voltage">Voltage: {{item.voltage}} {{item.voltage_u}}</p>
+      <mat-divider></mat-divider>
+      <br>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar
+      id="mainToolbar"
+      color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="toolbar-spacer"></span>
+      <span class="toolbar-spacer"></span>
+      <span>
+        <button matTooltip="Change the floor" style="font-size: 150%" mat-button [matMenuTriggerFor]="menu">Floor {{currentFloor}}<img class="arrow" src="../../assets/img/down_arrow.png"></button>
+        <mat-menu #menu="matMenu">
+          <ul *ngFor="let flr of floors">
+            <button (click)="update(flr)" mat-menu-item>Floor {{flr}}</button>
+          </ul>
+        </mat-menu>
+      </span>
+      <span class="toolbar-spacer"></span>
+      <span class="toolbar-spacer"></span>
+      <button
+        mat-mini-fab
+        [matMenuTriggerFor]="avatarDropDown"
+        class="toolbar-avatar"
+        color="primary"
+        [ngStyle]="{ 'background-image': 'url('+ user?.photoURL + ')' }"
+      ></button>
+    </mat-toolbar>
+    <img *ngIf="user" class="imgMap"  src="../../assets/img/{{currentFloor}}floor.png" height="600">
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<mat-menu #avatarDropDown="matMenu">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ user?.displayName }}</mat-card-title>
+        <mat-card-subtitle>{{ user?.email }}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+    <button
+      mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Sign Out</span>
+    </button>
+  </mat-menu>

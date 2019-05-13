@@ -33,7 +33,8 @@
       <span class="toolbar-spacer"></span>
       <span class="toolbar-spacer"></span>
       <span>
-        <button matTooltip="Change the floor" style="font-size: 150%" mat-button [matMenuTriggerFor]="menu">Floor {{currentFloor}}<img class="arrow" src="../../assets/img/down_arrow.png"></button>
+        Select floor:
+        <button matTooltip="Change the floor" style="font-size: 150%" mat-button [matMenuTriggerFor]="menu">Floor {{currentFloor}}</button>
         <mat-menu #menu="matMenu">
           <ul *ngFor="let flr of floors">
             <button (click)="update(flr)" mat-menu-item>Floor {{flr}}</button>

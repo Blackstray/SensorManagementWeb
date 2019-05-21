@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Item } from '../models/Item';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 
 @Injectable()
@@ -13,8 +14,10 @@ export class ItemService {
   floor$: BehaviorSubject<number>;
   sensor$: BehaviorSubject<string>;
   floors$: number[];
+  itemDoc: AngularFirestoreDocument<Item>;
 
   constructor(public afs: AngularFirestore) {
+    this.itemsCollection = this.afs.collection('Sensors');
     // Initial floor set
     this.sensor$ = new BehaviorSubject('');
     this.floor$ = new BehaviorSubject(1);
@@ -22,8 +25,13 @@ export class ItemService {
         switchMap(flr => this.afs
           .collection('Sensors', ref => ref
           .where('floor', '==', flr ))
-          .valueChanges())
-    );
+          .snapshotChanges().pipe(map(changes => {
+            return changes.map(a => {
+              const data = a.payload.doc.data() as Item;
+              data.id = a.payload.doc.id;
+              return data;
+            });
+          }))));
 
     this.itemsForFloors = this.afs.collection('Sensors').valueChanges();
   }
@@ -51,6 +59,17 @@ export class ItemService {
 
   getFloor() {
     return this.floor$.getValue();
+  }
+
+  addItem(item: Item) {
+    this.itemsCollection.add(item);
+  }
+  deleteItem(item: Item){
+    this.itemDoc = this.afs.doc(`Sensors/${item.id}`);
+    console.log('Deleted');
+    console.log(item);
+    console.log(item.id);
+    this.itemDoc.delete();
   }
 }
 

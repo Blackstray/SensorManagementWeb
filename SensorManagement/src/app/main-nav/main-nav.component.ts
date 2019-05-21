@@ -57,4 +57,10 @@ export class MainNavComponent implements OnInit {
     this.itemService.changeFloor(x);
     console.log(x);
   }
+  add(){
+    this.router.navigate(['add']);
+  }
+  remove(item: Item){
+    this.itemService.deleteItem(item);
+  }
 }

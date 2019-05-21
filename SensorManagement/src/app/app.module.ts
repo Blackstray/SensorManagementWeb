@@ -24,13 +24,15 @@ import { LoginService } from './auth/login.service';
 import { MaterialModule } from './material-module';
 //Bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddItemComponent } from './add-item/add-item.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
-    LoginsysComponent
+    LoginsysComponent,
+    AddItemComponent
   ],
   imports: [
     MaterialModule,

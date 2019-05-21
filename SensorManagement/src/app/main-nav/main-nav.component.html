@@ -18,7 +18,6 @@
       <p *ngIf="item.temperature">Temperature: {{item.temperature}} {{item.temperature_u}}</p>
       <p *ngIf="item.amperage">Amperage: {{item.amperage}} {{item.amperage_u}}</p>
       <p *ngIf="item.voltage">Voltage: {{item.voltage}} {{item.voltage_u}}</p>
-      <p>{{item.id}}</p>
       <button mat-flat-button color="warn" (click)="remove(item)">Remove</button>
       <mat-divider></mat-divider>
       <br>

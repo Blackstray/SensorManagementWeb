@@ -5,6 +5,10 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Sensors</mat-toolbar>
+    <mat-divider></mat-divider>
+    <button class="add" mat-flat-button color="primary" (click)="add()">Add</button>
+    <mat-divider></mat-divider>
+    <br>
     <span class="toolbar-spacer"></span>
     <ul *ngFor="let item of items">
       {{item.name}}({{item.type}})
@@ -14,6 +18,7 @@
       <p *ngIf="item.temperature">Temperature: {{item.temperature}} {{item.temperature_u}}</p>
       <p *ngIf="item.amperage">Amperage: {{item.amperage}} {{item.amperage_u}}</p>
       <p *ngIf="item.voltage">Voltage: {{item.voltage}} {{item.voltage_u}}</p>
+      <button mat-flat-button color="warn" (click)="remove(item)">Remove</button>
       <mat-divider></mat-divider>
       <br>
     </ul>

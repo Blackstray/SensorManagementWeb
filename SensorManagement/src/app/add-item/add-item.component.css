@@ -7,6 +7,12 @@
 .full-width {
   width: 100%;
 }
+.half-width{
+  width: 50%;
+}
+.half-half-width{
+  width: 25%;
+}
 .card {
   max-width: 400px;
   margin-top: 5%;

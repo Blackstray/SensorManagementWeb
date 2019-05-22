@@ -24,4 +24,6 @@ export interface Item {
   voltage_interval_ms?: number;
   voltage_max?: number;
   voltage_min?: number;
+  coordx?: number;
+  coordy?: number;
 }

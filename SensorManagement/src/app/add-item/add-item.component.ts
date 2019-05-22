@@ -35,7 +35,9 @@ export class AddItemComponent implements OnInit {
     power_interval_ms: 3000,
     power_max: 5000,
     power_min: 0,
-  }
+    coordx: 0,
+    coordy: 0
+  };
   selected = this.item.status;
 
   constructor(private itemService: ItemService, private router: Router) { }

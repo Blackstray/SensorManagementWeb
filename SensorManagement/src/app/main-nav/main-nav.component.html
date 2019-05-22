@@ -4,21 +4,19 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
-    <mat-toolbar>Sensors</mat-toolbar>
-    <mat-divider></mat-divider>
-    <button class="add" mat-flat-button color="primary" (click)="add()">Add</button>
-    <mat-divider></mat-divider>
+    <mat-toolbar>Sensors<button  class="add" mat-button color="primary" (click)="add()">Add</button></mat-toolbar>
+
     <br>
     <span class="toolbar-spacer"></span>
     <ul *ngFor="let item of items">
-      {{item.name}}({{item.type}})
+      {{item.name}}({{item.type}}) <a *ngIf="item.coordx && item.coordy" style="margin-left: 5%">x:{{item.coordx}}    y:{{item.coordy}}</a>
       <br>
       <p>Status: <b>{{item.status}}</b></p>
       <p *ngIf="item.power">Power: {{item.power}} {{item.power_u}}</p>
       <p *ngIf="item.temperature">Temperature: {{item.temperature}} {{item.temperature_u}}</p>
       <p *ngIf="item.amperage">Amperage: {{item.amperage}} {{item.amperage_u}}</p>
       <p *ngIf="item.voltage">Voltage: {{item.voltage}} {{item.voltage_u}}</p>
-      <button mat-flat-button color="warn" (click)="remove(item)">Remove</button>
+      <button mat-button color="warn" (click)="remove(item)">Remove</button>
       <mat-divider></mat-divider>
       <br>
     </ul>
@@ -57,6 +55,7 @@
       ></button>
     </mat-toolbar>
     <img *ngIf="user" class="imgMap"  src="../../assets/img/{{currentFloor}}floor.png" height="600">
+
   </mat-sidenav-content>
 </mat-sidenav-container>
 
